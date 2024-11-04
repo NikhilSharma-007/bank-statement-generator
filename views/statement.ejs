@@ -1,0 +1,241 @@
+<!-- statement.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANZ Bank Statement</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="statement-header">
+      <img src="/images/anz-logo.png" alt="ANZ Bank Logo" class="anz-logo" />
+      <h1>ANZ ACCESS ADVANTAGE STATEMENT</h1>
+      <p>STATEMENT NUMBER <%= statementNumber %></p>
+      <p><%= statementPeriod %></p>
+    </div>
+
+    <div class="statement-info">
+      <div class="customer-info">
+        <p><%= customerName %></p>
+        <p><%= customerAddress %></p>
+      </div>
+
+      <h2>WELCOME TO YOUR ANZ ACCOUNT AT A GLANCE</h2>
+      <div class="account-container">
+        <div class="account-info">
+          <div class="customer-name">
+            <div class="field-label">Account Details</div>
+            <div class="field-value">Mr John Doe</div>
+          </div>
+          <div class="account-field">
+            <div class="field-label">Branch Number (BSB)</div>
+            <div class="field-value">012-327</div>
+          </div>
+          <div class="account-field">
+            <div class="field-label">Account Number</div>
+            <div class="field-value">468441274</div>
+          </div>
+        </div>
+      
+        <div class="account-summary">
+          <div class="summary-row opening">
+            <div class="label">Opening Balance:</div>
+            <div class="amount">$10264.79</div>
+          </div>
+          <div class="summary-row deposits">
+            <div class="label">Total Deposits:</div>
+            <div class="amount">$7405.41</div>
+          </div>
+          <div class="summary-row withdrawals">
+            <div class="label">Total Withdrawals:</div>
+            <div class="amount">$3,535.00</div>
+          </div>
+          <div class="summary-row closing">
+            <div class="label">Closing Balance:</div>
+            <div class="amount">$14,135.10</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <h2>NEED TO GET IN TOUCH?</h2>
+        <div class="footer-container">
+          <div class="url-info">
+            <p>ANZ Internet banking</p>
+            <p>anz.com</p>
+          </div>
+          <div class="or-div">
+            <p>OR</p>
+          </div>
+          <div class="contact-info">
+            <p>Enquiries: 13 13 14</p>
+            <p>Lost/Stolen Card: 1800 033 844</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="transaction-container">
+        <h1>Transaction Details</h1>
+        <p>Please retain this statement for taxation purposes</p>
+        <table class="transaction-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Transaction Details</th>
+              <th>Withdrawals ($)</th>
+              <th>Deposits ($)</th>
+              <th>Balance ($)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2023-03-27</td>
+              <td class="transactions">OPENING BALANCE</td>
+              <td></td>
+              <td></td>
+              <td class="amount balance">10,264.69</td>
+            </tr>
+            <% let totalWithdrawals = 0; %>
+            <% let totalDeposits = 0; %>
+            <% transactions.forEach(function(transaction) { %>
+            <% totalWithdrawals += transaction.withdrawal || 0; %>
+            <% totalDeposits += transaction.deposit || 0; %>
+            <tr>
+              <td><%= transaction.date %></td>
+              <td class="transactions"><%= transaction.details %></td>
+              <td class="amount"><%= transaction.withdrawal ? transaction.withdrawal.toFixed(2) : '' %></td>
+              <td class="amount"><%= transaction.deposit ? transaction.deposit.toFixed(2) : '' %></td>
+              <td class="amount balance"><%= transaction.balance.toFixed(2) %></td>
+            </tr>
+            <% }); %>
+            <tr>
+              <td colspan="2">TOTALS AT END OF PERIOD</td>
+              <td class="amount">$<%= totalWithdrawals.toFixed(2) %></td>
+              <td class="amount">$<%= totalDeposits.toFixed(2) %></td>
+              <td class="amount balance">$<%= (10264.69 + totalDeposits - totalWithdrawals).toFixed(2) %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fee-summary">
+        <h2>Fee Summary</h2>
+        <table class="fee-table">
+          <thead>
+            <tr>
+              <th>Fees Charged for period: 28 JAN 2020 to 28 FEB 2020</th>
+              <th>Transactions</th>
+              <th>Fee Per Transaction ($)</th>
+              <th>Amount Waived ($)</th>
+              <th>Total Charge ($)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>SERVICE FEES</b></td>
+              <td>Total Free Additional</td>
+              <td>5.00</td>
+              <td></td>
+              <td>5.00</td>
+            </tr>
+            <tr>
+              <td>MONTHLY ACCOUNT SERVICE FEE</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>5.00</td>
+            </tr>
+            <tr>
+              <td><b>Total Account Service Fees</b></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>$0.00</td>
+            </tr>
+            <tr>
+              <td><b>Total Bank Account Fees Charged</b></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>$0.00</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><b>Please note:</b> Overseas transaction fees, overseas ATM fees and non ANZ ATM operator fees not included</p>
+
+        <table class="fee-table">
+          <thead>
+            <tr>
+              <th>Summary of ANZ Transaction Fees</th>
+              <th>Transactions <br> Total Fee Additional</th>
+              <th>Fee Per Transaction ($)</th>
+              <th>Amount Waived ($)</th>
+              <th>Total Charge ($)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>SERVICE FEES</b><br> MONTHLY ACCOUNT SERVICE FEE</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>5.00</td>
+            </tr>
+            <tr>
+              <td><b>Total Account Service Fees</b></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>$0.00</td>
+            </tr>
+            <tr>
+              <td><b>Total Bank Account Fees Charged</b></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>$0.00</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><b>Please note:</b> Overseas transaction fees, overseas ATM fees and non ANZ ATM operator fees not included</p>
+        <p><b>Please note:</b> Your fee cycle may not always reconcile with your statement cycle. This statement date ends on 30/04/20 and the monthly
+          fee cycle, as appears above, ended on 30/04/20.</p>
+      </div>
+
+      <div class="fee-saving">
+        <h3>ANZ Fee Saving Tip</h3>
+        <p>Easy access <b>with ANZ Internet Banking and goMoneyTM</b>
+        <br><br>Accessing your money when and where you want is easy with ANZ Internet Banking and ANZ goMoneyTM App. You can
+        view account balances, transfer money, pay bills or pay friends.
+        <br><br>ANZ goMoney is a registered trade mark of Australia and New Zealand Banking Group Limited (ANZ) ABN 11 005 357 522.</p>
+      </div>
+
+      <div class="profile-menu">
+        <h3>New Profile menu in ANZ Internet Banking</h3>
+        <p>The new Profile menu in ANZ Internet Banking lets you securely manage your contact information and security details. You can find the
+          new menu in the top right corner of ANZ Internet Banking. 
+          <br><br> Keep your contact information up to date, as these details may be used for security purposes (e.g. to verify transactions), or
+          send you account information.
+          <br><br>You can also choose which offers and promotions you want to receive and how. You can select as many as you like and make changes any time.
+          <br><br>Visit <a href="www.anz.com.au">www.anz.com.au</a> to explore your Profile today
+        </p>
+        <h3>It's now more important than ever to get on top of your money</h3>
+        <p>
+          More information is now being shared with the credit reporting bodies for your overdraft and loan accounts. So now it’s more important than
+          ever to understand your credit health and make your repayments on time.
+          <br><br>To find out more visit <a href="www.anz.com/creditreporting">www.anz.com/creditreporting</a>
+        </p>
+
+        <div class="imp-info">
+          <h2>IMPORTANT INFORMATION</h2>
+          <h3>PLEASE CHECK THE ENTRIES AND CALL 13 13 14 REGARDING ANY ERRORS ON THIS STATEMENT.</h3>
+          <p>All entries generated are subject to authorisation and verification and if necessary, adjustments will appear on a later statement.<br><br>
+            If you have a complaint or unresolved issue with ANZ's product or service please call our National Feedback Line 1800 805 154 and advise us. Further
+            information in relation to ANZ's dispute resolution process and this product (including details of benefits or fees and charges) is available on request and
+            you can access this information by reviewing the Terms and Conditions, and Fees and Charges brochures which can be found at www.anz.com or by
+            calling <b>13 13 14.</b></p>
+        </div>
+      </div>
+  </body>
+</html>

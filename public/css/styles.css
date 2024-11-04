@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --anz-blue: #005496;
+  --anz-light-blue: #007cc3;
+  --text-gray: #333333;
+  --border-gray: #cccccc;
+}
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  color: var(--text-gray);
+  margin: 0;
+  padding: 40px;
+}
+
+.statement-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.statement-header .anz-logo {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-bottom: 15px;
+}
+
+.statement-header h1 {
+  color: #0072ac;
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.statement-header p {
+  color: #0072ac;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.customer-info {
+  flex-direction: column;
+  font-size: small;
+}
+
+.statement-info > h2 {
+  color: #0072ac;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.account-container {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #0072ac;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.account-info {
+  flex: 1;
+}
+
+.customer-name {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.account-field {
+  margin-bottom: 15px;
+}
+
+.field-label {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.field-value {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.account-summary {
+  flex: 1;
+  background: linear-gradient(
+    to bottom,
+    #e6f3f9 0%,
+    #e6f3f9 75%,
+    #00a0d2 75%,
+    #00a0d2 100%
+  );
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.account-summary::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 75%;
+  height: 30px;
+  background: #00a0d2;
+  clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 100%);
+  z-index: 1;
+}
+
+.summary-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.summary-row .label {
+  color: #333;
+  font-size: 14px;
+}
+
+.summary-row .amount {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.summary-row.closing {
+  color: white;
+}
+
+.summary-row.opening .amount,
+.summary-row.deposits .amount,
+.summary-row.withdrawals .amount {
+  font-size: 32px;
+  color: #0072ac;
+  font-weight: 600;
+}
+
+.summary-row.closing .label,
+.summary-row.closing .amount {
+  color: white;
+}
+
+.summary-row.closing .amount {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.transaction-table th {
+  text-align: left;
+  padding: 12px;
+}
+
+.transaction-table td {
+  border-bottom: 1px solid var(--border-gray);
+  padding: 12px;
+  text-align: left;
+}
+
+.transactions {
+  font-weight: 600;
+}
+
+.balance {
+  font-weight: 600;
+}
+
+.fee-summary {
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+}
+
+.fee-summary h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.fee-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.fee-table th,
+.fee-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.fee-table th {
+  font-weight: bold;
+}
+
+.fee-table .amount {
+  text-align: right;
+}
+
+.fee-table .balance {
+  font-weight: bold;
+}
+
+.imp-info {
+  background-color: #b9edfd;
+}
+
+.imp-info h2 {
+  color: #003d6b;
+}
+
+.imp-info h3 {
+  color: #0072ac;
+}
+
+.footer {
+  margin-top: 40px;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.footer p {
+  margin: 10px 0;
+}
+
+.footer h2 {
+  color: #0072ac;
+  display: flex;
+  align-items: start;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #b9edfd;
+  align-items: center;
+}
+
+.footer .contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer .contact-info p {
+  margin: 5px 0;
+}
